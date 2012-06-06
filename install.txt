@@ -1,0 +1,5 @@
+1. Activate the extension and regenerate the eZ Publish autoloads file
+2. Add Date & Time attributes to the classes for which you wish to have delayed publishing
+3. Create an eZ Publish workflow of type "Hide Until Date". Map the relevant classes to their Date & Time attributes.
+4. Assign the workflow to the "content/publish/after" trigger
+5. Make sure you have the built-in eZ Publish workflow.php cronjob running
