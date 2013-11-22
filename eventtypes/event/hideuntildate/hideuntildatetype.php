@@ -85,7 +85,7 @@ class hideUntilDateType extends eZWorkflowEventType
                             eZContentObjectTreeNode::unhideSubTree( $node );
                             eZContentCacheManager::clearContentCache( $parameters['object_id'] );
                             eZContentCacheManager::clearObjectViewCache( $parameters['object_id'] );
-							$this->registerObjectForDelayedIndexing($object);
+                            $this->registerObjectForDelayedIndexing($object);
                         }
                         return eZWorkflowType::STATUS_ACCEPTED;
                     }
