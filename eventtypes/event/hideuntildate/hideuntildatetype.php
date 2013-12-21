@@ -103,7 +103,7 @@ class hideUntilDateType extends eZWorkflowEventType
 	
     function registerObjectForDelayedIndexing($oObject) {
         if ( eZINI::instance( 'site.ini' )->variable( 'SearchSettings', 'DelayedIndexing' ) == 'enabled'
-            || $eZTagsINI->variable( 'SearchSettings', 'ReindexWhenDelayedIndexingDisabled' ) == 'enabled' )
+            || eZINI::instance( 'site.ini' )->variable( 'SearchSettings', 'ReindexWhenDelayedIndexingDisabled' ) == 'enabled' )
         {         
             eZContentOperationCollection::registerSearchObject( $oObject->attribute( 'id' ), $oObject->attribute( 'current_version' ) );
         }
