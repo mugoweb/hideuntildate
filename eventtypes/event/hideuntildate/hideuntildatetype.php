@@ -78,6 +78,9 @@ class hideUntilDateType extends eZWorkflowEventType
                         {
                             $object->setAttribute( 'published', $objectAttribute->toString() );
                             $object->store();
+                            $objectVersion = eZContentObjectVersion::fetchVersion($object->CurrentVersion, $object->ID);
+                            $objectVersion->Status = eZContentObjectVersion::STATUS_PUBLISHED;
+                            $objectVersion->store();
                         }
                         $nodes = $object->attribute( 'assigned_nodes' );
                         foreach( $nodes as $node )
