@@ -1,7 +1,7 @@
 {
     "name": "mugoweb/hideuntildate",
     "version": "1.0",
-    "description": "Mugo Web - Hide Until Date",
+    "description": "Simple workflow for scheduling content to be revealed in eZ Publish",
     "type": "ezpublish-legacy-extension",
     "authors": [
         {
@@ -13,5 +13,8 @@
     "minimum-stability": "stable",
     "extra": {
         "ezpublish-legacy-extension-name": "hideuntildate"
+    },
+    "require": {
+        "ezsystems/ezpublish-legacy-installer": "*"
     }
 }
