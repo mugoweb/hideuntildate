@@ -1,0 +1,17 @@
+{
+    "name": "mugoweb/hideuntildate",
+    "version": "1.0",
+    "description": "Mugo Web - Hide Until Date",
+    "type": "ezpublish-legacy-extension",
+    "authors": [
+        {
+            "name": "Mugo Web",
+            "homepage": "http://www.mugo.ca/"
+        }
+    ],
+    "license": "GPL-2.0",
+    "minimum-stability": "stable",
+    "extra": {
+        "ezpublish-legacy-extension-name": "hideuntildate"
+    }
+}
