@@ -3,3 +3,14 @@
 3. Create an eZ Publish workflow of type "Hide Until Date". Map the relevant classes to their Date & Time attributes.
 4. Assign the workflow to the "content/publish/after" trigger
 5. Make sure you have the built-in eZ Publish workflow.php cronjob running
+
+Note: This extension doesn't work on first publish if you have the in-edit Locations window enabled and an install newer than February 2014.
+This is because of this commit: https://github.com/ezsystems/ezpublish-legacy/commit/c3e8ff555964b165bf4b0872baa9014818086a59
+It appears that the commit is trying to save the user's selection when saving a draft, but this does not work for the "Unchanged" selection, nor is "Unchanged" the default selection anymore.
+
+Thus, until that is fixed, the workarounds are:
+* Do not use the in-edit Locations window; or
+* Tell users to manually select "Unchanged" on every first draft; or
+* Override design/admin/templates/content/edit_locations.tpl and make "Unchanged" the default selection
+
+If "Visible" is selected in the in-edit Locations window, this takes precedence over the workflow, because the "after publish" workflow is run before the Locations window selection is applied. (See kernel/content/edit.php.)
