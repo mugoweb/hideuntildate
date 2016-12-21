@@ -85,6 +85,7 @@ class hideUntilDateType extends eZWorkflowEventType
                             eZContentObjectTreeNode::unhideSubTree( $node );
                             eZContentCacheManager::clearContentCache( $parameters['object_id'] );
                             eZContentCacheManager::clearObjectViewCache( $parameters['object_id'] );
+                            $this->registerObjectForDelayedIndexing($object);
                         }
                         return eZWorkflowType::STATUS_ACCEPTED;
                     }
@@ -99,7 +100,15 @@ class hideUntilDateType extends eZWorkflowEventType
         // No attributes matched the workflow configured by the user
         return eZWorkflowType::STATUS_ACCEPTED;
     }
-    
+	
+    function registerObjectForDelayedIndexing($oObject) {
+        if ( eZINI::instance( 'site.ini' )->variable( 'SearchSettings', 'DelayedIndexing' ) == 'enabled'
+            || eZINI::instance( 'site.ini' )->variable( 'SearchSettings', 'ReindexWhenDelayedIndexingDisabled' ) == 'enabled' )
+        {         
+            eZContentOperationCollection::registerSearchObject( $oObject->attribute( 'id' ), $oObject->attribute( 'current_version' ) );
+        }
+    }
+	
     function getWorkflowSettings( $event )
     {
         $workflowSettings = array();
