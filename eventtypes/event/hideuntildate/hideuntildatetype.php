@@ -67,6 +67,7 @@ class hideUntilDateType extends eZWorkflowEventType
                             if( !$node->attribute( 'is_hidden' ) )
                             {
                                 eZContentObjectTreeNode::hideSubTree( $node );
+                                eZSearch::updateNodeVisibility( $node->attribute( 'node_id' ), 'hide' );
                             }
                         }
                         return eZWorkflowType::STATUS_DEFERRED_TO_CRON_REPEAT;
@@ -83,6 +84,7 @@ class hideUntilDateType extends eZWorkflowEventType
                         foreach( $nodes as $node )
                         {
                             eZContentObjectTreeNode::unhideSubTree( $node );
+                            eZSearch::updateNodeVisibility( $node->attribute( 'node_id' ), 'show' );
                             eZContentCacheManager::clearContentCache( $parameters['object_id'] );
                             eZContentCacheManager::clearObjectViewCache( $parameters['object_id'] );
                         }
